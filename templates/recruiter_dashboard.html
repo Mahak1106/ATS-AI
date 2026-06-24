@@ -1,0 +1,210 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="glass-card mb-4">
+
+<h2>👨‍💼 Recruiter Dashboard</h2>
+
+<p style="color:#94a3b8;">
+    Manage jobs, applications, resumes and candidate hiring decisions.
+</p>
+
+</div>
+
+<div class="row">
+
+<div class="col-md-3 mb-3">
+    <div class="glass-card text-center">
+        <h5>💼 Total Jobs</h5>
+        <h2>{{ total_jobs }}</h2>
+    </div>
+</div>
+
+<div class="col-md-3 mb-3">
+    <div class="glass-card text-center">
+        <h5>📄 Applications</h5>
+        <h2>{{ total_applications }}</h2>
+    </div>
+</div>
+
+<div class="col-md-3 mb-3">
+    <div class="glass-card text-center">
+        <h5>👥 Candidates</h5>
+        <h2>{{ total_users }}</h2>
+    </div>
+</div>
+
+<div class="col-md-3 mb-3">
+    <div class="glass-card text-center">
+        <h5>⭐ Shortlisted</h5>
+        <h2>{{ shortlisted }}</h2>
+    </div>
+</div>
+
+</div>
+
+<div class="glass-card mt-4">
+
+<h3>📋 Applications</h3>
+
+<form method="GET"
+      action="/recruiter_dashboard"
+      class="mb-4">
+
+    <input
+        type="text"
+        name="search"
+        value="{{ search }}"
+        class="form-control"
+        placeholder="🔍 Search candidates">
+
+</form>
+
+<table class="table table-hover">
+
+    <thead>
+
+        <tr>
+            <th>ID</th>
+            <th>Applicant</th>
+            <th>Job</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        {% for app in applications %}
+
+        <tr>
+
+            <td>{{ app[0] }}</td>
+
+            <td>
+                <strong>{{ app[1] }}</strong>
+            </td>
+
+            <td>{{ app[2] }}</td>
+
+            <td>
+
+                {% if app[3] == "Selected" %}
+
+                    <span class="badge bg-success">
+                        {{ app[3] }}
+                    </span>
+
+                {% elif app[3] == "Rejected" %}
+
+                    <span class="badge bg-danger">
+                        {{ app[3] }}
+                    </span>
+
+                {% else %}
+
+                    <span class="badge bg-warning text-dark">
+                        {{ app[3] }}
+                    </span>
+
+                {% endif %}
+
+            </td>
+
+            <td>
+
+                <a href="/view_resumes"
+                   class="btn btn-info btn-sm">
+
+                    Resume
+
+                </a>
+
+                <a href="/update_status/{{ app[0] }}/Shortlisted"
+                   class="btn btn-success btn-sm">
+
+                    Shortlist
+
+                </a>
+
+                <a href="/update_status/{{ app[0] }}/Rejected"
+                   class="btn btn-danger btn-sm">
+
+                    Reject
+
+                </a>
+
+                <a href="/update_status/{{ app[0] }}/Selected"
+                   class="btn btn-primary btn-sm">
+
+                    Select
+
+                </a>
+                <a href="/schedule_interview/{{ app[0] }}"
+                   class="btn btn-warning btn-sm">
+
+                   Interview
+
+                 </a>
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+
+</table>
+
+</div>
+
+<br>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<div class="glass-card">
+<h3>📊 Recruitment Analytics</h3>
+
+<canvas id="analyticsChart"></canvas>
+
+</div>
+
+<script>
+
+const ctx = document.getElementById('analyticsChart');
+
+new Chart(ctx, {
+
+    type: 'bar',
+
+    data: {
+
+        labels: [
+            'Jobs',
+            'Applications',
+            'Candidates',
+            'Shortlisted'
+        ],
+
+        datasets: [{
+
+            label: 'ATS Analytics',
+
+            data: [
+                {{ total_jobs }},
+                {{ total_applications }},
+                {{ total_users }},
+                {{ shortlisted }}
+            ]
+
+        }]
+
+    }
+
+});
+
+</script>
+
+{% endblock %}

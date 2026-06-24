@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="glass-card">
+
+<h2>📅 Scheduled Interviews</h2>
+
+<p style="color:#94a3b8;">
+    Manage and track all scheduled candidate interviews.
+</p>
+
+
+</div>
+
+<br>
+
+<div class="glass-card">
+
+
+<table class="table table-hover">
+
+    <thead>
+
+        <tr>
+
+            <th>ID</th>
+
+            <th>Candidate</th>
+
+            <th>Job Title</th>
+
+            <th>Date</th>
+
+            <th>Time</th>
+
+            <th>Mode</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        {% for interview in interviews %}
+
+        <tr>
+
+            <td>{{ interview[0] }}</td>
+
+            <td>{{ interview[1] }}</td>
+
+            <td>{{ interview[2] }}</td>
+
+            <td>{{ interview[3] }}</td>
+
+            <td>{{ interview[4] }}</td>
+
+            <td>
+
+                {% if interview[5] == "Online" %}
+
+                    <span class="badge bg-success">
+                        {{ interview[5] }}
+                    </span>
+
+                {% else %}
+
+                    <span class="badge bg-primary">
+                        {{ interview[5] }}
+                    </span>
+
+                {% endif %}
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+
+</table>
+
+
+</div>
+
+{% endblock %}

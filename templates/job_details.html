@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="glass-card">
+
+    <h1>{{ job[1] }}</h1>
+
+    <h4 style="color:#06b6d4;">
+        {{ job[2] }}
+    </h4>
+
+    <hr>
+
+    <h5>Job Description</h5>
+
+    <p>
+        {{ job[3] }}
+    </p>
+
+    <br>
+
+    <a href="/apply/{{ job[0] }}"
+       class="btn btn-success">
+        🚀 Apply Now
+    </a>
+
+    <a href="/jobs"
+       class="btn btn-secondary">
+        ← Back
+    </a>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="glass-card">
+
+    <h2>🚀 Apply for Job</h2>
+
+    <br>
+
+    <h3>{{ job[1] }}</h3>
+
+    <h5 style="color:#06b6d4;">
+        {{ job[2] }}
+    </h5>
+
+    <hr>
+
+    <h4>Job Description</h4>
+
+    <p>
+        {{ job[3] }}
+    </p>
+
+    <br>
+
+    <form method="POST">
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                Applicant Name
+            </label>
+
+            <input
+                type="text"
+                class="form-control"
+                value="{{ session['name'] }}"
+                readonly>
+
+        </div>
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                Cover Letter
+            </label>
+
+            <textarea
+                class="form-control"
+                name="cover_letter"
+                rows="5"
+                placeholder="Write your cover letter here..."></textarea>
+
+        </div>
+
+        <div class="mt-4">
+
+            <button
+                type="submit"
+                class="btn btn-success">
+
+                🚀 Submit Application
+
+            </button>
+
+            <a
+                href="/jobs"
+                class="btn btn-secondary">
+
+                ← Back
+
+            </a>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="glass-card">
+
+<h2>📅 Schedule Interview</h2>
+
+<form method="POST">
+
+    <div class="mb-3">
+
+        <label class="form-label">
+            Candidate Name
+        </label>
+
+        <input
+            type="text"
+            class="form-control"
+            value="{{ application[0] }}"
+            readonly>
+
+    </div>
+
+    <div class="mb-3">
+
+        <label class="form-label">
+            Job Title
+        </label>
+
+        <input
+            type="text"
+            class="form-control"
+            value="{{ application[1] }}"
+            readonly>
+
+    </div>
+
+    <div class="mb-3">
+
+        <label class="form-label">
+            Interview Date
+        </label>
+
+        <input
+            type="date"
+            name="date"
+            class="form-control"
+            required>
+
+    </div>
+
+    <div class="mb-3">
+
+        <label class="form-label">
+            Interview Time
+        </label>
+
+        <input
+            type="time"
+            name="time"
+            class="form-control"
+            required>
+
+    </div>
+
+    <div class="mb-3">
+
+        <label class="form-label">
+            Interview Mode
+        </label>
+
+        <select
+            name="mode"
+            class="form-control">
+
+            <option value="Online">
+                Online
+            </option>
+
+            <option value="Offline">
+                Offline
+            </option>
+
+        </select>
+
+    </div>
+
+    <button
+        type="submit"
+        class="btn btn-success">
+
+        📅 Schedule Interview
+
+    </button>
+
+    <a href="/recruiter_dashboard"
+       class="btn btn-secondary">
+
+        ← Back
+
+    </a>
+
+</form>
+
+
+</div>
+
+{% endblock %}

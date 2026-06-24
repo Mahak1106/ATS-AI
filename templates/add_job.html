@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card shadow p-4">
+
+<h2>Add Job</h2>
+
+<form method="POST">
+
+<div class="mb-3">
+
+<label>Job Title</label>
+
+<input type="text"
+class="form-control"
+name="title">
+
+</div>
+
+<div class="mb-3">
+
+<label>Company</label>
+
+<input type="text"
+class="form-control"
+name="company">
+
+</div>
+
+<div class="mb-3">
+
+<label>Description</label>
+
+<textarea
+class="form-control"
+rows="5"
+name="description">
+</textarea>
+
+</div>
+
+<button
+class="btn btn-primary">
+
+Post Job
+
+</button>
+
+</form>
+
+</div>
+
+{% endblock %}

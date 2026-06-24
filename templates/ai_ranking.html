@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>🤖 AI Candidate Ranking</h2>
+
+<div class="glass-card">
+
+<table class="table">
+
+<tr>
+    <th>Rank</th>
+    <th>Candidate</th>
+    <th>Resume</th>
+    <th>AI Score</th>
+</tr>
+
+{% for candidate in candidates %}
+
+<tr>
+
+    <td>{{ loop.index }}</td>
+
+    <td>{{ candidate[0] }}</td>
+
+    <td>{{ candidate[1] }}</td>
+
+    <td>
+        <span class="badge bg-success">
+            {{ candidate[2] }}%
+        </span>
+    </td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+{% endblock %}

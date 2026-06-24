@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="glass-card">
+
+<div class="text-center mb-4">
+
+    <h2>📄 Upload Your Resume</h2>
+
+    <p style="color:#94a3b8;">
+        Upload your latest resume to improve your chances of getting shortlisted.
+    </p>
+
+</div>
+
+<form method="POST" enctype="multipart/form-data">
+
+    <div class="mb-4">
+
+        <label class="form-label">
+            Resume File (PDF/DOCX)
+        </label>
+
+        <input
+            type="file"
+            name="resume"
+            class="form-control"
+            accept=".pdf,.doc,.docx"
+            required>
+
+    </div>
+
+    <div class="glass-card mb-4">
+
+        <h5>📌 Resume Tips</h5>
+
+        <ul>
+            <li>Include your latest contact information.</li>
+            <li>Highlight technical skills and projects.</li>
+            <li>Keep your resume ATS-friendly.</li>
+            <li>Use PDF format for best compatibility.</li>
+        </ul>
+
+    </div>
+
+    <div class="d-flex gap-2">
+
+        <button
+            type="submit"
+            class="btn btn-success">
+
+            🚀 Upload Resume
+
+        </button>
+
+        <a href="/dashboard"
+           class="btn btn-secondary">
+
+            ← Back to Dashboard
+
+        </a>
+
+    </div>
+
+</form>
+
+</div>
+
+{% endblock %}

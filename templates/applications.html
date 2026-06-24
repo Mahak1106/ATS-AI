@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="mb-4">
+📄 My Applications
+</h2>
+
+<div class="glass-card">
+
+<table class="table">
+
+<tr>
+    <th>ID</th>
+    <th>Job</th>
+    <th>Status</th>
+</tr>
+
+{% for app in applications %}
+
+<tr>
+
+<td>{{ app[0] }}</td>
+
+<td>{{ app[2] }}</td>
+
+<td>
+<span class="badge bg-primary">
+{{ app[3] }}
+</span>
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+{% endblock %}

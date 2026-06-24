@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="glass-card">
+
+<h2>📄 Resume Management</h2>
+
+<p style="color:#94a3b8;">
+    View, download, and manage candidate resumes.
+</p>
+
+<table class="table table-hover">
+
+    <thead>
+
+        <tr>
+            <th>ID</th>
+            <th>Candidate</th>
+            <th>Resume</th>
+            <th>AI Score</th>
+            <th>Actions</th>
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        {% for resume in resumes %}
+
+        <tr>
+
+            <td>{{ resume[0] }}</td>
+
+            <td>{{ resume[1] }}</td>
+
+            <td>{{ resume[2] }}</td>
+
+            <td>
+
+                <span class="badge bg-success">
+                    {{ resume[3] }}%
+                </span>
+
+            </td>
+
+            <td>
+
+                <a href="/view_resume/{{ resume[2] }}"
+                   target="_blank"
+                   class="btn btn-info btn-sm">
+
+                    👁 View
+
+                </a>
+
+                <a href="/download_resume/{{ resume[2] }}"
+                   class="btn btn-primary btn-sm">
+
+                    ⬇ Download
+
+                </a>
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+
+</table>
+
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="glass-card mb-4">
+
+
+<h1>👋 Welcome, {{ name }}</h1>
+
+<p style="color:#94a3b8;">
+    ATS.AI Smart Recruitment Platform
+</p>
+
+</div>
+
+<div class="row">
+
+<div class="col-md-4 mb-3">
+
+    <div class="glass-card text-center">
+
+        <h5>💼 Total Jobs</h5>
+
+        <h2>{{ total_jobs }}</h2>
+
+    </div>
+
+</div>
+
+<div class="col-md-4 mb-3">
+
+    <div class="glass-card text-center">
+
+        <h5>📄 Applications</h5>
+
+        <h2>{{ total_applications }}</h2>
+
+    </div>
+
+</div>
+
+<div class="col-md-4 mb-3">
+
+    <div class="glass-card text-center">
+
+        <h5>👥 Candidates</h5>
+
+        <h2>{{ total_users }}</h2>
+
+    </div>
+
+</div>
+
+</div>
+
+<div class="glass-card mt-4">
+
+<h3>🔥 Recent Jobs</h3>
+
+<br>
+
+{% if jobs %}
+
+    {% for job in jobs %}
+
+    <div class="mb-3">
+
+        <h4>{{ job[1] }}</h4>
+
+        <p style="color:#06b6d4;">
+            {{ job[2] }}
+        </p>
+
+        <a href="/job_details/{{ job[0] }}"
+           class="btn btn-outline-light btn-sm">
+
+            📋 View Details
+
+        </a>
+
+    </div>
+
+    <hr>
+
+    {% endfor %}
+
+{% else %}
+
+    <div class="text-center">
+
+        <h4>🚫 No Jobs Available</h4>
+
+        <p style="color:#94a3b8;">
+            No jobs have been posted yet.
+        </p>
+
+    </div>
+
+{% endif %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="glass-card mb-4">
+
+
+<h1>💼 Job Opportunities</h1>
+
+<p style="color:#94a3b8;">
+    Discover exciting opportunities and apply instantly.
+</p>
+
+</div>
+
+<form method="GET" action="/jobs" class="mb-4">
+<input
+    type="text"
+    name="search"
+    class="form-control"
+    placeholder="🔍 Search jobs or companies">
+
+
+</form>
+
+<div class="row">
+
+{% if jobs %}
+
+{% for job in jobs %}
+
+<div class="col-lg-6 mb-4">
+
+    <div class="glass-card">
+
+        <h3>{{ job[1] }}</h3>
+
+        <p style="color:#06b6d4;">
+            {{ job[2] }}
+        </p>
+
+        <p>
+            {{ job[3] }}
+        </p>
+
+        <a href="/apply/{{ job[0] }}"
+           class="btn btn-success">
+
+            🚀 Apply
+
+        </a>
+
+        <a href="/job_details/{{ job[0] }}"
+           class="btn btn-outline-light">
+
+            📋 Details
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endfor %}
+
+
+{% else %}
+
+<div class="col-12">
+
+<div class="glass-card text-center">
+
+    <h2>🚫 No Jobs Available</h2>
+
+    <p>
+        No jobs found.
+    </p>
+
+</div>
+
+</div>
+
+{% endif %}
+
+</div>
+
+{% endblock %}
