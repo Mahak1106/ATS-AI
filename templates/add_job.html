@@ -2,52 +2,142 @@
 
 {% block content %}
 
-<div class="card shadow p-4">
+<style>
 
-<h2>Add Job</h2>
+.add-job-card{
+    max-width:750px;
+    margin:auto;
+    border:none;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 15px 35px rgba(0,0,0,.12);
+}
 
-<form method="POST">
+.card-header{
+    background:linear-gradient(135deg,#4f46e5,#7c3aed);
+    color:white;
+    padding:25px;
+}
 
-<div class="mb-3">
+.card-header h2{
+    margin:0;
+    font-weight:600;
+}
 
-<label>Job Title</label>
+.card-header p{
+    margin:5px 0 0;
+    opacity:.9;
+}
 
-<input type="text"
-class="form-control"
-name="title">
+.form-label{
+    font-weight:600;
+    color:#444;
+}
 
-</div>
+.form-control{
+    border-radius:10px;
+    padding:12px;
+    border:1px solid #ddd;
+    transition:.3s;
+}
 
-<div class="mb-3">
+.form-control:focus{
+    border-color:#7c3aed;
+    box-shadow:0 0 8px rgba(124,58,237,.25);
+}
 
-<label>Company</label>
+textarea{
+    resize:none;
+}
 
-<input type="text"
-class="form-control"
-name="company">
+.btn-post{
+    background:linear-gradient(135deg,#4f46e5,#7c3aed);
+    color:white;
+    border:none;
+    border-radius:10px;
+    padding:12px 28px;
+    font-size:16px;
+    font-weight:600;
+    transition:.3s;
+}
 
-</div>
+.btn-post:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(124,58,237,.3);
+}
 
-<div class="mb-3">
+.icon{
+    margin-right:8px;
+    color:#7c3aed;
+}
 
-<label>Description</label>
+</style>
 
-<textarea
-class="form-control"
-rows="5"
-name="description">
-</textarea>
+<div class="card add-job-card">
 
-</div>
+    <div class="card-header">
+        <h2>
+            <i class="fas fa-briefcase"></i>
+            Add New Job
+        </h2>
+        <p>Create a new job opening for candidates.</p>
+    </div>
 
-<button
-class="btn btn-primary">
+    <div class="card-body p-4">
 
-Post Job
+        <form method="POST">
 
-</button>
+            <div class="mb-4">
+                <label class="form-label">
+                    <i class="fas fa-briefcase icon"></i>
+                    Job Title
+                </label>
 
-</form>
+                <input
+                    type="text"
+                    class="form-control"
+                    name="title"
+                    placeholder="e.g. Python Developer"
+                    required>
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label">
+                    <i class="fas fa-building icon"></i>
+                    Company Name
+                </label>
+
+                <input
+                    type="text"
+                    class="form-control"
+                    name="company"
+                    placeholder="e.g. Google"
+                    required>
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label">
+                    <i class="fas fa-align-left icon"></i>
+                    Job Description
+                </label>
+
+                <textarea
+                    class="form-control"
+                    rows="6"
+                    name="description"
+                    placeholder="Write complete job description..."
+                    required></textarea>
+
+            </div>
+
+            <button class="btn btn-post">
+                <i class="fas fa-paper-plane"></i>
+                Post Job
+            </button>
+
+        </form>
+
+    </div>
 
 </div>
 

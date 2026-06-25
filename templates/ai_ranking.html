@@ -2,40 +2,186 @@
 
 {% block content %}
 
-<h2>🤖 AI Candidate Ranking</h2>
+<style>
 
-<div class="glass-card">
+.ranking-card{
+    border:none;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 12px 30px rgba(0,0,0,.12);
+}
 
-<table class="table">
+.ranking-header{
+    background:linear-gradient(135deg,#4f46e5,#7c3aed);
+    color:white;
+    padding:22px;
+}
 
-<tr>
-    <th>Rank</th>
-    <th>Candidate</th>
-    <th>Resume</th>
-    <th>AI Score</th>
-</tr>
+.ranking-header h2{
+    margin:0;
+    font-weight:600;
+}
 
-{% for candidate in candidates %}
+.ranking-header p{
+    margin:5px 0 0;
+    opacity:.9;
+}
 
-<tr>
+.table{
+    margin-bottom:0;
+}
 
-    <td>{{ loop.index }}</td>
+.table th{
+    background:#f4f3ff;
+    color:#4f46e5;
+    font-weight:600;
+}
 
-    <td>{{ candidate[0] }}</td>
+.table td,
+.table th{
+    vertical-align:middle;
+    padding:16px;
+}
 
-    <td>{{ candidate[1] }}</td>
+.table tbody tr:hover{
+    background:#f9f7ff;
+    transition:.3s;
+}
 
-    <td>
-        <span class="badge bg-success">
-            {{ candidate[2] }}%
-        </span>
-    </td>
+.rank{
+    font-size:22px;
+    font-weight:bold;
+}
 
-</tr>
+.badge-score{
+    background:linear-gradient(135deg,#4f46e5,#7c3aed);
+    color:white;
+    padding:8px 15px;
+    border-radius:20px;
+    font-size:14px;
+}
 
-{% endfor %}
+.progress{
+    height:10px;
+    border-radius:20px;
+    background:#ecebff;
+}
 
-</table>
+.progress-bar{
+    background:linear-gradient(90deg,#4f46e5,#7c3aed);
+}
+
+.resume-link{
+    text-decoration:none;
+    color:#4f46e5;
+    font-weight:600;
+}
+
+.resume-link:hover{
+    color:#7c3aed;
+}
+
+</style>
+
+<div class="card ranking-card">
+
+    <div class="ranking-header">
+        <h2>
+            🤖 AI Candidate Ranking
+        </h2>
+
+        <p>
+            Candidates ranked automatically based on AI resume analysis.
+        </p>
+    </div>
+
+    <div class="card-body">
+
+        <div class="table-responsive">
+
+            <table class="table align-middle">
+
+                <thead>
+
+                <tr>
+
+                    <th>Rank</th>
+                    <th>Candidate</th>
+                    <th>Resume</th>
+                    <th width="250">AI Score</th>
+
+                </tr>
+
+                </thead>
+
+                <tbody>
+
+                {% for candidate in candidates %}
+
+                <tr>
+
+                    <td class="rank">
+
+                        {% if loop.index == 1 %}
+                        🥇
+                        {% elif loop.index == 2 %}
+                        🥈
+                        {% elif loop.index == 3 %}
+                        🥉
+                        {% else %}
+                        #{{ loop.index }}
+                        {% endif %}
+
+                    </td>
+
+                    <td>
+
+                        <strong>{{ candidate[0] }}</strong>
+
+                    </td>
+
+                    <td>
+
+                        <a href="#" class="resume-link">
+                            📄 {{ candidate[1] }}
+                        </a>
+
+                    </td>
+
+                    <td>
+
+                        <div class="d-flex justify-content-between mb-2">
+
+                            <span class="badge-score">
+                                {{ candidate[2] }}%
+                            </span>
+
+                        </div>
+
+                        <div class="progress">
+
+                            <div
+                                class="progress-bar"
+                                role="progressbar"
+                                style="width: {{ candidate[2] }}%;">
+
+                            </div>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
 
 </div>
 

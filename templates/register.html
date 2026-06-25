@@ -1,30 +1,337 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Register</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ATS Register</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#4f46e5,#7c3aed,#9333ea);
+    overflow:hidden;
+}
+
+body::before{
+    content:"";
+    position:absolute;
+    width:320px;
+    height:320px;
+    border-radius:50%;
+    background:rgba(255,255,255,.15);
+    top:-80px;
+    left:-80px;
+}
+
+body::after{
+    content:"";
+    position:absolute;
+    width:280px;
+    height:280px;
+    border-radius:50%;
+    background:rgba(255,255,255,.1);
+    bottom:-70px;
+    right:-70px;
+}
+
+.register-box{
+
+    width:420px;
+    padding:40px;
+    border-radius:20px;
+    background:rgba(255,255,255,.15);
+    backdrop-filter:blur(15px);
+    color:white;
+    box-shadow:0 15px 35px rgba(0,0,0,.25);
+    animation:fade .8s ease;
+
+}
+
+@keyframes fade{
+
+from{
+opacity:0;
+transform:translateY(40px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+.logo{
+
+text-align:center;
+font-size:55px;
+margin-bottom:10px;
+
+}
+
+h2{
+
+text-align:center;
+margin-bottom:5px;
+
+}
+
+.subtitle{
+
+text-align:center;
+font-size:14px;
+margin-bottom:25px;
+color:#e6e6e6;
+
+}
+
+.input-group{
+
+position:relative;
+margin-bottom:18px;
+
+}
+
+.input-group input,
+.input-group select{
+
+width:100%;
+padding:13px 45px;
+border:none;
+outline:none;
+border-radius:10px;
+background:rgba(255,255,255,.18);
+color:white;
+font-size:15px;
+
+}
+
+.input-group input::placeholder{
+
+color:#ddd;
+
+}
+
+.input-group select{
+
+appearance:none;
+cursor:pointer;
+
+}
+
+.input-group option{
+
+color:black;
+
+}
+
+.input-group i:first-child{
+
+position:absolute;
+left:15px;
+top:15px;
+color:white;
+
+}
+
+.eye{
+
+position:absolute;
+right:15px;
+top:15px;
+cursor:pointer;
+
+}
+
+.arrow{
+
+position:absolute;
+right:15px;
+top:15px;
+pointer-events:none;
+
+}
+
+button{
+
+width:100%;
+padding:13px;
+border:none;
+border-radius:10px;
+background:white;
+color:#6d28d9;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+
+}
+
+button:hover{
+
+background:#ede9fe;
+transform:translateY(-2px);
+
+}
+
+.footer{
+
+margin-top:20px;
+text-align:center;
+font-size:14px;
+
+}
+
+.footer a{
+
+color:white;
+font-weight:bold;
+text-decoration:none;
+
+}
+
+.footer a:hover{
+
+text-decoration:underline;
+
+}
+
+</style>
+
 </head>
+
 <body>
 
-<h2>Register</h2>
+<div class="register-box">
+
+<div class="logo">
+<i class="fa-solid fa-user-plus"></i>
+</div>
+
+<h2>Create Account</h2>
+<p class="subtitle">Join ATS Recruitment Platform</p>
 
 <form method="POST">
 
-    <input type="text" name="name" placeholder="Name" required><br><br>
+<div class="input-group">
 
-    <input type="email" name="email" placeholder="Email" required><br><br>
+<i class="fa-solid fa-user"></i>
 
-    <input type="password" name="password" placeholder="Password" required><br><br>
+<input
+type="text"
+name="name"
+placeholder="Full Name"
+required>
 
-    <select name="role">
-        <option value="candidate">Candidate</option>
-        <option value="recruiter">Recruiter</option>
-    </select>
+</div>
 
-    <br><br>
+<div class="input-group">
 
-    <button type="submit">Register</button>
+<i class="fa-solid fa-envelope"></i>
+
+<input
+type="email"
+name="email"
+placeholder="Email Address"
+required>
+
+</div>
+
+<div class="input-group">
+
+<i class="fa-solid fa-lock"></i>
+
+<input
+type="password"
+id="password"
+name="password"
+placeholder="Password"
+required>
+
+<i class="fa-solid fa-eye eye" onclick="togglePassword()"></i>
+
+</div>
+
+<div class="input-group">
+
+<i class="fa-solid fa-user-tag"></i>
+
+<select name="role">
+
+<option value="candidate">Candidate</option>
+
+<option value="recruiter">Recruiter</option>
+
+</select>
+
+<i class="fa-solid fa-chevron-down arrow"></i>
+
+</div>
+
+<button type="submit">
+
+<i class="fa-solid fa-user-check"></i>
+ Register
+
+</button>
 
 </form>
+
+<div class="footer">
+
+Already have an account?
+
+<a href="/login">Login</a>
+
+</div>
+
+</div>
+
+<script>
+
+function togglePassword(){
+
+let password=document.getElementById("password");
+
+let icon=document.querySelector(".eye");
+
+if(password.type==="password"){
+
+password.type="text";
+
+icon.classList.remove("fa-eye");
+
+icon.classList.add("fa-eye-slash");
+
+}
+
+else{
+
+password.type="password";
+
+icon.classList.remove("fa-eye-slash");
+
+icon.classList.add("fa-eye");
+
+}
+
+}
+
+</script>
 
 </body>
 </html>

@@ -2,33 +2,196 @@
 
 {% block content %}
 
-<div class="glass-card">
+<style>
 
-    <h1>{{ job[1] }}</h1>
+.job-card{
+    max-width:900px;
+    margin:auto;
+    border:none;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 15px 35px rgba(0,0,0,.12);
+}
 
-    <h4 style="color:#06b6d4;">
-        {{ job[2] }}
-    </h4>
+.job-header{
+    background:linear-gradient(135deg,#4f46e5,#7c3aed);
+    color:white;
+    padding:30px;
+}
 
-    <hr>
+.job-header h2{
+    margin:0;
+    font-weight:700;
+}
 
-    <h5>Job Description</h5>
+.company{
+    margin-top:10px;
+    font-size:18px;
+    opacity:.95;
+}
 
-    <p>
-        {{ job[3] }}
-    </p>
+.job-body{
+    padding:35px;
+}
 
-    <br>
+.info-box{
+    background:#f8f7ff;
+    border-left:5px solid #7c3aed;
+    border-radius:12px;
+    padding:20px;
+    margin-bottom:25px;
+}
 
-    <a href="/apply/{{ job[0] }}"
-       class="btn btn-success">
-        🚀 Apply Now
-    </a>
+.section-title{
+    color:#4f46e5;
+    font-weight:600;
+    margin-bottom:15px;
+}
 
-    <a href="/jobs"
-       class="btn btn-secondary">
-        ← Back
-    </a>
+.job-description{
+    color:#555;
+    line-height:1.8;
+    font-size:16px;
+}
+
+.btn-apply{
+    background:linear-gradient(135deg,#4f46e5,#7c3aed);
+    color:white;
+    border:none;
+    border-radius:10px;
+    padding:12px 28px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.btn-apply:hover{
+    color:white;
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(124,58,237,.3);
+}
+
+.btn-back{
+    border-radius:10px;
+    padding:12px 28px;
+}
+
+.badge-company{
+    background:#ede9fe;
+    color:#4f46e5;
+    padding:8px 16px;
+    border-radius:20px;
+    font-weight:600;
+}
+
+.job-meta{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-top:15px;
+}
+
+.meta-item{
+    background:#f8f7ff;
+    padding:10px 16px;
+    border-radius:10px;
+    color:#555;
+    font-weight:500;
+}
+
+.meta-item i{
+    color:#7c3aed;
+    margin-right:6px;
+}
+
+</style>
+
+<div class="card job-card">
+
+    <div class="job-header">
+
+        <h2>
+            <i class="fas fa-briefcase"></i>
+            {{ job[1] }}
+        </h2>
+
+        <div class="company">
+            <i class="fas fa-building"></i>
+            {{ job[2] }}
+        </div>
+
+    </div>
+
+    <div class="job-body">
+
+        <div class="info-box">
+
+            <span class="badge-company">
+                <i class="fas fa-building"></i>
+                {{ job[2] }}
+            </span>
+
+            <div class="job-meta">
+
+                <div class="meta-item">
+                    <i class="fas fa-clock"></i>
+                    Full-Time
+                </div>
+
+                <div class="meta-item">
+                    <i class="fas fa-location-dot"></i>
+                    Remote / On-site
+                </div>
+
+                <div class="meta-item">
+                    <i class="fas fa-user-tie"></i>
+                    Hiring
+                </div>
+
+            </div>
+
+        </div>
+
+        <h4 class="section-title">
+
+            <i class="fas fa-align-left"></i>
+
+            Job Description
+
+        </h4>
+
+        <p class="job-description">
+
+            {{ job[3] }}
+
+        </p>
+
+        <hr>
+
+        <div class="mt-4">
+
+            {% if session.get('role') == 'candidate' %}
+
+            <a href="/apply/{{ job[0] }}" class="btn btn-apply">
+
+                <i class="fas fa-paper-plane"></i>
+
+                Apply Now
+
+            </a>
+
+            {% endif %}
+
+            <a href="/jobs" class="btn btn-outline-secondary btn-back ms-2">
+
+                <i class="fas fa-arrow-left"></i>
+
+                Back to Jobs
+
+            </a>
+
+        </div>
+
+    </div>
 
 </div>
 

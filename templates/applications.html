@@ -2,39 +2,177 @@
 
 {% block content %}
 
-<h2 class="mb-4">
-📄 My Applications
-</h2>
+<style>
 
-<div class="glass-card">
+.app-card{
+    border:none;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 12px 30px rgba(0,0,0,.12);
+}
 
-<table class="table">
+.app-header{
+    background:linear-gradient(135deg,#4f46e5,#7c3aed);
+    color:white;
+    padding:22px;
+}
 
-<tr>
-    <th>ID</th>
-    <th>Job</th>
-    <th>Status</th>
-</tr>
+.app-header h2{
+    margin:0;
+    font-weight:600;
+}
 
-{% for app in applications %}
+.app-header p{
+    margin:5px 0 0;
+    opacity:.9;
+}
 
-<tr>
+.table{
+    margin-bottom:0;
+}
 
-<td>{{ app[0] }}</td>
+.table th{
+    background:#f4f3ff;
+    color:#4f46e5;
+    font-weight:600;
+    border:none;
+}
 
-<td>{{ app[2] }}</td>
+.table td{
+    vertical-align:middle;
+    border:none;
+    padding:16px;
+}
 
-<td>
-<span class="badge bg-primary">
-{{ app[3] }}
-</span>
-</td>
+.table tbody tr{
+    transition:.3s;
+}
 
-</tr>
+.table tbody tr:hover{
+    background:#f9f7ff;
+    transform:scale(1.01);
+}
 
-{% endfor %}
+.job-title{
+    font-weight:600;
+    color:#333;
+}
 
-</table>
+.badge{
+    padding:8px 14px;
+    border-radius:20px;
+    font-size:13px;
+}
+
+.empty-state{
+    text-align:center;
+    padding:60px 20px;
+    color:#666;
+}
+
+.empty-state i{
+    font-size:60px;
+    color:#7c3aed;
+    margin-bottom:20px;
+}
+
+</style>
+
+<div class="card app-card">
+
+    <div class="app-header">
+        <h2>
+            <i class="fas fa-file-alt"></i>
+            My Applications
+        </h2>
+        <p>Track the progress of your job applications.</p>
+    </div>
+
+    <div class="card-body">
+
+        {% if applications %}
+
+        <div class="table-responsive">
+
+            <table class="table">
+
+                <thead>
+
+                    <tr>
+                        <th>Application ID</th>
+                        <th>Job Title</th>
+                        <th>Status</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                {% for app in applications %}
+
+                    <tr>
+
+                        <td>#{{ app[0] }}</td>
+
+                        <td class="job-title">
+                            {{ app[2] }}
+                        </td>
+
+                        <td>
+
+                            {% if app[3] == "Pending" %}
+
+                                <span class="badge bg-warning text-dark">
+                                    ⏳ Pending
+                                </span>
+
+                            {% elif app[3] == "Shortlisted" %}
+
+                                <span class="badge bg-success">
+                                    ✅ Shortlisted
+                                </span>
+
+                            {% elif app[3] == "Rejected" %}
+
+                                <span class="badge bg-danger">
+                                    ❌ Rejected
+                                </span>
+
+                            {% else %}
+
+                                <span class="badge bg-primary">
+                                    {{ app[3] }}
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        {% else %}
+
+        <div class="empty-state">
+
+            <i class="fas fa-folder-open"></i>
+
+            <h4>No Applications Found</h4>
+
+            <p>You haven't applied for any jobs yet.</p>
+
+        </div>
+
+        {% endif %}
+
+    </div>
 
 </div>
 

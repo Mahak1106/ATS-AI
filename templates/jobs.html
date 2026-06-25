@@ -2,26 +2,103 @@
 
 {% block content %}
 
-<div class="glass-card mb-4">
+<style>
 
+.page-header{
+    background:linear-gradient(135deg,#4f46e5,#7c3aed);
+    color:white;
+    padding:30px;
+    border-radius:20px;
+    margin-bottom:30px;
+    box-shadow:0 12px 30px rgba(0,0,0,.15);
+}
 
-<h1>💼 Job Opportunities</h1>
+.page-header h2{
+    margin:0;
+    font-weight:700;
+}
 
-<p style="color:#94a3b8;">
-    Discover exciting opportunities and apply instantly.
-</p>
+.page-header p{
+    margin-top:8px;
+    opacity:.9;
+}
+
+.job-card{
+    border:none;
+    border-radius:18px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    transition:.3s;
+    height:100%;
+}
+
+.job-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+}
+
+.company{
+    color:#7c3aed;
+    font-weight:600;
+    margin-bottom:15px;
+}
+
+.job-description{
+    color:#666;
+    line-height:1.6;
+    min-height:90px;
+}
+
+.job-footer{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:20px;
+}
+
+.btn-details{
+    background:linear-gradient(135deg,#4f46e5,#7c3aed);
+    color:white;
+    border:none;
+    border-radius:10px;
+}
+
+.btn-details:hover{
+    color:white;
+}
+
+.badge-job{
+    background:#ede9fe;
+    color:#4f46e5;
+    padding:8px 14px;
+    border-radius:20px;
+    font-size:13px;
+}
+
+.empty-state{
+    text-align:center;
+    padding:70px 20px;
+}
+
+.empty-state i{
+    font-size:70px;
+    color:#7c3aed;
+    margin-bottom:20px;
+}
+
+</style>
+
+<div class="page-header">
+
+    <h2>
+        <i class="fas fa-briefcase"></i>
+        Available Jobs
+    </h2>
+
+    <p>
+        Explore opportunities and apply for your next career move.
+    </p>
 
 </div>
-
-<form method="GET" action="/jobs" class="mb-4">
-<input
-    type="text"
-    name="search"
-    class="form-control"
-    placeholder="🔍 Search jobs or companies">
-
-
-</form>
 
 <div class="row">
 
@@ -31,50 +108,87 @@
 
 <div class="col-lg-6 mb-4">
 
-    <div class="glass-card">
+<div class="card job-card">
 
-        <h3>{{ job[1] }}</h3>
+<div class="card-body">
 
-        <p style="color:#06b6d4;">
-            {{ job[2] }}
-        </p>
+<h4>{{ job[1] }}</h4>
 
-        <p>
-            {{ job[3] }}
-        </p>
+<div class="company">
 
-        <a href="/apply/{{ job[0] }}"
-           class="btn btn-success">
+<i class="fas fa-building"></i>
 
-            🚀 Apply
+{{ job[2] }}
 
-        </a>
+</div>
 
-        <a href="/job_details/{{ job[0] }}"
-           class="btn btn-outline-light">
+<span class="badge-job">
 
-            📋 Details
+<i class="fas fa-briefcase"></i>
 
-        </a>
+Open Position
 
-    </div>
+</span>
+
+<p class="job-description mt-3">
+
+{{ job[3][:180] }}{% if job[3]|length > 180 %}...{% endif %}
+
+</p>
+
+<div class="job-footer">
+
+<a href="/job_details/{{ job[0] }}"
+class="btn btn-details">
+
+<i class="fas fa-eye"></i>
+
+View Details
+
+</a>
+
+{% if session.get('role') == 'candidate' %}
+
+<a href="/apply/{{ job[0] }}"
+class="btn btn-success">
+
+<i class="fas fa-paper-plane"></i>
+
+Apply
+
+</a>
+
+{% endif %}
+
+</div>
+
+</div>
+
+</div>
 
 </div>
 
 {% endfor %}
 
-
 {% else %}
 
 <div class="col-12">
 
-<div class="glass-card text-center">
+<div class="card border-0 shadow rounded-4">
 
-    <h2>🚫 No Jobs Available</h2>
+<div class="empty-state">
 
-    <p>
-        No jobs found.
-    </p>
+<i class="fas fa-folder-open"></i>
+
+<h3>No Jobs Available</h3>
+
+<p class="text-muted">
+
+There are currently no job openings.
+
+</p>
+
+</div>
 
 </div>
 

@@ -2,79 +2,192 @@
 
 {% block content %}
 
-<div class="glass-card">
+<style>
 
-    <h2>🚀 Apply for Job</h2>
+.apply-card{
+    max-width:850px;
+    margin:auto;
+    border:none;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 15px 35px rgba(0,0,0,.12);
+}
 
-    <br>
+.apply-header{
+    background:linear-gradient(135deg,#4f46e5,#7c3aed);
+    color:white;
+    padding:25px;
+}
 
-    <h3>{{ job[1] }}</h3>
+.apply-header h2{
+    margin:0;
+    font-weight:600;
+}
 
-    <h5 style="color:#06b6d4;">
-        {{ job[2] }}
-    </h5>
+.apply-header p{
+    margin-top:5px;
+    opacity:.9;
+}
 
-    <hr>
+.job-info{
+    background:#f8f7ff;
+    border-left:5px solid #7c3aed;
+    border-radius:12px;
+    padding:20px;
+    margin-bottom:25px;
+}
 
-    <h4>Job Description</h4>
+.job-info h3{
+    margin-bottom:8px;
+    color:#333;
+}
 
-    <p>
-        {{ job[3] }}
-    </p>
+.company{
+    color:#7c3aed;
+    font-weight:600;
+    margin-bottom:15px;
+}
 
-    <br>
+.form-label{
+    font-weight:600;
+    color:#444;
+}
 
-    <form method="POST">
+.form-control{
+    border-radius:10px;
+    padding:12px;
+    border:1px solid #ddd;
+    transition:.3s;
+}
 
-        <div class="mb-3">
+.form-control:focus{
+    border-color:#7c3aed;
+    box-shadow:0 0 10px rgba(124,58,237,.25);
+}
 
-            <label class="form-label">
-                Applicant Name
-            </label>
+textarea{
+    resize:none;
+}
 
-            <input
-                type="text"
-                class="form-control"
-                value="{{ session['name'] }}"
-                readonly>
+.btn-submit{
+    background:linear-gradient(135deg,#4f46e5,#7c3aed);
+    color:white;
+    border:none;
+    border-radius:10px;
+    padding:12px 28px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.btn-submit:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(124,58,237,.3);
+    color:white;
+}
+
+.btn-back{
+    border-radius:10px;
+    padding:12px 25px;
+}
+
+.icon{
+    color:#7c3aed;
+    margin-right:8px;
+}
+
+</style>
+
+<div class="card apply-card">
+
+    <div class="apply-header">
+
+        <h2>
+            <i class="fas fa-paper-plane"></i>
+            Apply for Job
+        </h2>
+
+        <p>
+            Complete the application form below.
+        </p>
+
+    </div>
+
+    <div class="card-body p-4">
+
+        <div class="job-info">
+
+            <h3>{{ job[1] }}</h3>
+
+            <div class="company">
+                <i class="fas fa-building"></i>
+                {{ job[2] }}
+            </div>
+
+            <h5>
+                <i class="fas fa-align-left icon"></i>
+                Job Description
+            </h5>
+
+            <p>
+                {{ job[3] }}
+            </p>
 
         </div>
 
-        <div class="mb-3">
+        <form method="POST">
 
-            <label class="form-label">
-                Cover Letter
-            </label>
+            <div class="mb-4">
 
-            <textarea
-                class="form-control"
-                name="cover_letter"
-                rows="5"
-                placeholder="Write your cover letter here..."></textarea>
+                <label class="form-label">
+                    <i class="fas fa-user icon"></i>
+                    Applicant Name
+                </label>
 
-        </div>
+                <input
+                    type="text"
+                    class="form-control"
+                    value="{{ session['name'] }}"
+                    readonly>
 
-        <div class="mt-4">
+            </div>
+
+            <div class="mb-4">
+
+                <label class="form-label">
+                    <i class="fas fa-envelope-open-text icon"></i>
+                    Cover Letter
+                </label>
+
+                <textarea
+                    class="form-control"
+                    rows="6"
+                    name="cover_letter"
+                    placeholder="Introduce yourself and explain why you're a good fit for this role..."
+                    required></textarea>
+
+            </div>
 
             <button
                 type="submit"
-                class="btn btn-success">
+                class="btn btn-submit">
 
-                🚀 Submit Application
+                <i class="fas fa-paper-plane"></i>
+                Submit Application
 
             </button>
 
             <a
                 href="/jobs"
-                class="btn btn-secondary">
+                class="btn btn-outline-secondary btn-back ms-2">
 
-                ← Back
+                <i class="fas fa-arrow-left"></i>
+                Back to Jobs
 
             </a>
 
-        </div>
+        </form>
 
-    </form>
+    </div>
 
 </div>
 

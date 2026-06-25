@@ -1,21 +1,226 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Login</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ATS Login</title>
+
+<!-- Font Awesome Icons -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#4f46e5,#7c3aed,#9333ea);
+    overflow:hidden;
+}
+
+body::before{
+    content:'';
+    position:absolute;
+    width:350px;
+    height:350px;
+    background:#ffffff25;
+    border-radius:50%;
+    top:-100px;
+    left:-100px;
+}
+
+body::after{
+    content:'';
+    position:absolute;
+    width:300px;
+    height:300px;
+    background:#ffffff15;
+    border-radius:50%;
+    bottom:-80px;
+    right:-80px;
+}
+
+.login-box{
+    width:380px;
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(15px);
+    border-radius:20px;
+    padding:40px;
+    color:white;
+    box-shadow:0 15px 35px rgba(0,0,0,.25);
+    animation:fadeIn .8s ease;
+}
+
+@keyframes fadeIn{
+    from{
+        transform:translateY(40px);
+        opacity:0;
+    }
+    to{
+        transform:translateY(0);
+        opacity:1;
+    }
+}
+
+.logo{
+    text-align:center;
+    margin-bottom:10px;
+    font-size:55px;
+}
+
+h2{
+    text-align:center;
+    margin-bottom:5px;
+}
+
+.subtitle{
+    text-align:center;
+    margin-bottom:30px;
+    color:#e5e5e5;
+    font-size:14px;
+}
+
+.input-group{
+    position:relative;
+    margin-bottom:22px;
+}
+
+.input-group input{
+    width:100%;
+    padding:13px 45px;
+    border:none;
+    outline:none;
+    border-radius:10px;
+    background:rgba(255,255,255,0.18);
+    color:white;
+    font-size:15px;
+}
+
+.input-group input::placeholder{
+    color:#ddd;
+}
+
+.input-group i{
+    position:absolute;
+    left:15px;
+    top:15px;
+    color:white;
+}
+
+.toggle-password{
+    position:absolute;
+    right:15px;
+    top:15px;
+    cursor:pointer;
+}
+
+button{
+    width:100%;
+    padding:13px;
+    border:none;
+    border-radius:10px;
+    background:white;
+    color:#6d28d9;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    background:#ede9fe;
+    transform:translateY(-2px);
+}
+
+.footer{
+    text-align:center;
+    margin-top:20px;
+    font-size:14px;
+}
+
+.footer a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.footer a:hover{
+    text-decoration:underline;
+}
+
+</style>
+
 </head>
+
 <body>
 
-<h2>Login</h2>
+<div class="login-box">
+
+<div class="logo">
+<i class="fa-solid fa-user-shield"></i>
+</div>
+
+<h2>Welcome Back</h2>
+<p class="subtitle">Login to your ATS Dashboard</p>
 
 <form method="POST">
 
-    <input type="email" name="email" placeholder="Email" required><br><br>
+<div class="input-group">
+<i class="fa-solid fa-envelope"></i>
+<input type="email" name="email" placeholder="Email Address" required>
+</div>
 
-    <input type="password" name="password" placeholder="Password" required><br><br>
+<div class="input-group">
+<i class="fa-solid fa-lock"></i>
+<input type="password" id="password" name="password" placeholder="Password" required>
+<i class="fa-solid fa-eye toggle-password" onclick="togglePassword()"></i>
+</div>
 
-    <button type="submit">Login</button>
+<button type="submit">
+<i class="fa-solid fa-right-to-bracket"></i>
+Login
+</button>
 
 </form>
+
+<div class="footer">
+Don't have an account?
+<a href="/register">Register</a>
+</div>
+
+</div>
+
+<script>
+
+function togglePassword(){
+
+let password=document.getElementById("password");
+let icon=document.querySelector(".toggle-password");
+
+if(password.type==="password"){
+password.type="text";
+icon.classList.remove("fa-eye");
+icon.classList.add("fa-eye-slash");
+}
+else{
+password.type="password";
+icon.classList.remove("fa-eye-slash");
+icon.classList.add("fa-eye");
+}
+
+}
+
+</script>
 
 </body>
 </html>
